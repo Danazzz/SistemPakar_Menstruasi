@@ -6,17 +6,15 @@ if ($mod == 'signup') {
     $email = esc_field($_POST['email']);
     $user = esc_field($_POST['user']);
     $pass = esc_field($_POST['pass']);
-    $tgl = esc_field($_POST['tgl']);
-    $jkel = esc_field($_POST['jkel']);
-    $kota = esc_field($_POST['kota']);
     $time = date('Y-m-d H:i:s');
     $kode_user = uniqid();
     
-    
-    if ($db->get_results("SELECT * FROM tb_user WHERE email='$email'")){
+    if (!$email || !$user || !$pass)
+        print_msg("Field tidak boleh kosong!");
+    elseif ($db->get_results("SELECT * FROM tb_user WHERE email='$email'"))
         print_msg("Email sudah ada!");
-    } else {
-        $db->query("INSERT INTO tb_user (kode_user, email, pass, user, tgl_lahir, jenis_kelamin, kota_asal, hak_akses, created_at) VALUES ('$kode_user', '$email', '$pass', '$user', '$tgl', '$jkel', '$kota', '1', '$time')");
+    else {
+        $db->query("INSERT INTO tb_user (kode_user, email, pass, user, hak_akses, created_at) VALUES ('$kode_user', '$email', '$pass', '$user', '1', '$time')");
         redirect_js("index.php?m=login");
     }
 }
@@ -78,6 +76,20 @@ elseif ($mod == 'penyakit_tambah') {
         print_msg("Kode sudah ada!");
     else {
         $db->query("INSERT INTO tb_penyakit (kode_penyakit, nama_penyakit, bobot, keterangan) VALUES ('$kode_penyakit', '$nama_penyakit', '$bobot', '$keterangan')");
+
+        $i=0;
+        while ($i >= $db->get_results("SELECT COUNT(kode_gejala) FROM tb_gejala")){
+            $rows = $db->get_results("SELECT kode_gejala FROM tb_gejala ORDER BY kode_gejala");
+            foreach ($rows as $row) {
+                $a = $db->query("INSERT INTO tb_aturan (kode_penyakit, kode_gejala, nilai) VALUES ('$kode_penyakit', '$row', 0)");
+            }
+            if ($j = True){
+                return $i + 1;
+            }
+            else {
+                print_msg("Something Wrong!");
+            }
+        }
         redirect_js("index.php?m=penyakit");
     }
 } else if ($mod == 'penyakit_ubah') {

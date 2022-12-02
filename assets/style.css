@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none !important;
+    list-style: none; 
+    font-family: "DM Sans", sans-serif;
+    scroll-behavior: smooth;
+}
+
+.navbar{
+    background: linear-gradient(106.84deg, #ea5273 -29.07%, #f18da5 97.32%);
+}
+
+.btn-primary {
+    background-color: #ea5273;
+    color:#ffffff;
+    border-color: #ea5273;
+}
+
+body {
+    background-color:#ffffff;
+    color: #ea5273;
+  }
+.color-white {
+    color:#ffffff;
+}
+.form-control {
+    background-color:antiquewhite;
+}
+.bg-pink{
+    background: linear-gradient(106.84deg, #ea5273 -29.07%, #f18da5 97.32%);
+    color: #ffffff;
+}

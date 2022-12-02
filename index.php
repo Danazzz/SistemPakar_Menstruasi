@@ -11,8 +11,9 @@ include 'functions.php';
 	<link rel="icon" href="favicon.ico" />
 
 	<title>Sistem Pakar Kelainan Menstruasi</title>
-	<link href="assets/css/darkly-bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="assets/css/general.css" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/style.css" />
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 </head>
@@ -70,9 +71,9 @@ include 'functions.php';
 		}
 		?>
 	</div>
-	<footer class="footer bg-primary">
+	<footer class="footer bg-pink">
 		<div class="container">
-			<p>Sistem Pakar: Kelainan Menstruasi <em class="pull-right">Updated 06 Juli 2022</em></p>
+			<p>Contact Developer: <em class="pull-right">artaputra95@gmail.com</em></p>
 		</div>
 	</footer>
 	<script type="text/javascript">

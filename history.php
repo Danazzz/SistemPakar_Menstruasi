@@ -1,11 +1,11 @@
 <?php
 if ($_SESSION['akses'] == '0') {
-    $rows = $db->get_results("SELECT * FROM tb_diagnosa
+    $rows = $db->get_results("SELECT tb_user.kode_user, tb_user.user, tb_penyakit.nama_penyakit, tb_diagnosa.total_bobot, tb_diagnosa.created_at FROM tb_diagnosa
     INNER JOIN tb_user ON tb_diagnosa.kode_user = tb_user.kode_user
     INNER JOIN tb_penyakit ON tb_diagnosa.kode_penyakit = tb_penyakit.kode_penyakit
     ");
 } elseif ($_SESSION['akses'] == '1') {
-    $rows = $db->get_results("SELECT * FROM tb_diagnosa
+    $rows = $db->get_results("SELECT tb_user.kode_user, tb_user.user, tb_penyakit.nama_penyakit., tb_diagnosa.total_bobot, tb_diagnosa.created_at FROM tb_diagnosa
     INNER JOIN tb_user ON tb_diagnosa.kode_user = tb_user.kode_user
     INNER JOIN tb_penyakit ON tb_diagnosa.kode_penyakit = tb_penyakit.kode_penyakit
     WHERE tb_user.kode_user='$_SESSION[login]'
@@ -17,7 +17,7 @@ if ($_SESSION['akses'] == '0') {
     <div class="panel-heading">
         <h3 class="panel-title">Gejala Terpilih</h3>
     </div>
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover color-white">
         <thead>
             <tr>
                 <th>No</th>

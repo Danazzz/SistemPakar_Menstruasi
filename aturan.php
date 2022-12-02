@@ -17,7 +17,7 @@
         </form>
     </div>
     <div class="oxa">
-        <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-hover table-striped color-white">
             <thead>
                 <tr class="nw">
                     <th>No</th>

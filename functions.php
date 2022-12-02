@@ -2,10 +2,13 @@
 error_reporting(~E_NOTICE);
 session_start();
 
+date_default_timezone_set('asia/hong_kong');
+
 include 'config.php';
 include 'includes/db.php';
 include 'includes/bayes.php';
 $db = new DB($config['server'], $config['username'], $config['password'], $config['database_name']);
+
 
 function _post($key, $val = null)
 {
@@ -123,3 +126,4 @@ function dd($arr)
 {
     echo '<pre>' . print_r($arr, 1) . '</pre>';
 }
+

@@ -5,13 +5,12 @@
 $success = false;
 if ($_POST) {
     if (count((array)$_POST['selected']) > 0) {
-        if ($_POST['submit']) {
-            $selected = (array) $_POST['selected'];
-            $insert = $db->query("INSERT INTO tb_user (kode_user, kode_gejala) VALUES ('$_SESSION[login]', '{" . implode("','", $selected) . "}')");
-            var_dump($insert);die;
-        }
         $success = true;
-        include 'hasil.php';
+        if ($_SESSION['akses'] == '0') {
+            include 'hasil_admin.php';
+        } elseif ($_SESSION['akses'] == '1') {
+            include 'hasil.php';
+        }
     } else {
         print_msg('Pilih minimal 1 gejala');
     }
@@ -23,7 +22,7 @@ if (!$success) : ?>
                 <h3 class="panel-title">Pilih Gejala</h3>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
+                <table class="table table-bordered table-hover color-white">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAll" /></th>

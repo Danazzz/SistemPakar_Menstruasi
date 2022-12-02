@@ -20,7 +20,7 @@
         </form>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-hover table-striped color-white">
             <thead>
                 <tr>
                     <th>Kode</th>
