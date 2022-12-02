@@ -6,8 +6,8 @@
         <?php if ($_POST) include 'aksi.php'; ?>
         <form class="form-signin" action="?m=login" method="post">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="user" autofocus />
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" autofocus />
             </div>
             <div class="form-group">
                 <label>Password</label>

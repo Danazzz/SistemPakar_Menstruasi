@@ -23,11 +23,11 @@ if ($mod == 'signup') {
 
 /** LOGIN */
 if ($mod == 'login') {
-    $user = esc_field($_POST['user']);
+    $email = esc_field($_POST['email']);
     $pass = esc_field($_POST['pass']);
     $time = date('Y-m-d H:i:s');
 
-    $row = $db->get_row("SELECT * FROM tb_user WHERE user='$user' AND pass='$pass'");
+    $row = $db->get_row("SELECT * FROM tb_user WHERE email='$email' AND pass='$pass'");
     
     if ($row) {
         $_SESSION['login'] = $row->kode_user;

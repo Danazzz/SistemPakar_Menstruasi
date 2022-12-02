@@ -10,7 +10,7 @@ include 'functions.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="icon" href="favicon.ico" />
 
-	<title>Sistem Pakar Kelainan Menstruasi</title>
+	<title>Sistem Pakar Gangguan Menstruasi</title>
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="assets/css/general.css" rel="stylesheet" />
 	<link rel="stylesheet" href="assets/style.css" />
@@ -28,7 +28,7 @@ include 'functions.php';
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="?">ES Menstruasi</a>
+				<a class="navbar-brand" href="?">SP Menstruasi</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">

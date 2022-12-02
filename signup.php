@@ -6,7 +6,7 @@
         <?php if ($_POST) include 'aksi.php'; ?>
         <form class="form-signin" action="?m=signup" method="post">
             <div class="form-group">
-                <label>Username</label>
+                <label>Nama Lengkap</label>
                 <input type="text" class="form-control" name="user" autofocus required/>
             </div>
             <div class="form-group">

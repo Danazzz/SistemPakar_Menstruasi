@@ -1,6 +1,7 @@
 <?php
 $selected = (array) $_POST['selected'];
 $rows = $db->get_results("SELECT kode_gejala, nama_gejala FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $selected) . "')");
+$gejala_pilih = json_encode($_POST['selected']);
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -168,7 +169,7 @@ $b = new Bayes($selected, $penyakit, $data);
             $time = date('Y-m-d H:i:s');
             $total_bobot = round($b->persen[$kode_penyakit] * 100, 2);
             
-            $db->query("INSERT INTO tb_diagnosa (kode_user, kode_penyakit, total_bobot, gejala_pilih, created_at) VALUES ('$_SESSION[login]', '$kode_penyakit', '$total_bobot', '$gejala', '$time')");
+            $db->query("INSERT INTO tb_diagnosa (kode_user, kode_penyakit, total_bobot, gejala_pilih, created_at) VALUES ('$_SESSION[login]', '$kode_penyakit', '$total_bobot', '$gejala_pilih', '$time')");
             ?>
             Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <a href="?m=penyakit"><strong><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
             dengan hasil <strong><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
