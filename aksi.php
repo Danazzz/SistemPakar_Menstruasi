@@ -5,18 +5,21 @@ require_once 'functions.php';
 if ($mod == 'signup') {
     $email = esc_field($_POST['email']);
     $user = esc_field($_POST['user']);
-    $pass = esc_field($_POST['pass']);
+    $pass1 = esc_field($_POST['pass1']);
+    $pass2 = esc_field($_POST['pass2']);
     $tgl = esc_field($_POST['tgl']);
     $jkel = esc_field($_POST['jkel']);
     $kota = esc_field($_POST['kota']);
+    $pekerjaan = esc_field($_POST['pekerjaan']);
     $time = date('Y-m-d H:i:s');
     $kode_user = uniqid();
     
-    
     if ($db->get_results("SELECT * FROM tb_user WHERE email='$email'")){
         print_msg("Email sudah ada!");
+    } elseif ($pass1 != $pass2){
+        print_msg('Password dan konfirmasi password tidak sama.');
     } else {
-        $db->query("INSERT INTO tb_user (kode_user, email, pass, user, tgl_lahir, jenis_kelamin, kota_asal, hak_akses, created_at) VALUES ('$kode_user', '$email', '$pass', '$user', '$tgl', '$jkel', '$kota', '1', '$time')");
+        $db->query("INSERT INTO tb_user (kode_user, email, pass, user, tgl_lahir, jenis_kelamin, kota_asal, pekerjaan, hak_akses, created_at) VALUES ('$kode_user', '$email', '$pass', '$user', '$tgl', '$jkel', '$kota', '$pekerjaan', '1', '$time')");
         redirect_js("index.php?m=login");
     }
 }
@@ -59,6 +62,7 @@ if ($mod == 'login') {
         print_msg('Password berhasil diubah.', 'success');
     }
 } elseif ($act == 'logout') {
+    $time = date('Y-m-d H:i:s');
     $db->query("UPDATE tb_user SET logout_at = '$time' WHERE kode_user='$_SESSION[login]'");
     unset($_SESSION['login']);
     unset($_SESSION['akses']);

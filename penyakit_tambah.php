@@ -15,7 +15,13 @@
             </div>
             <div class="form-group">
                 <label>Bobot <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" name="bobot" />
+                <select name="bobot" class="form-control">
+                    <option selected disabled>-</option>
+                    <option value=0>Tidak ada</option>
+                    <option value=0.3>Sedikit Ada</option>
+                    <option value=0.8>Ada</option>
+                    <option value=1>Sangat Ada</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Keterangan</label>

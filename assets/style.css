@@ -24,6 +24,9 @@ body {
 .color-white {
     color:#ffffff;
 }
+.color-green {
+    color: #00bc8c;
+}
 .form-control {
     background-color:antiquewhite;
 }

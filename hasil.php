@@ -2,7 +2,10 @@
 $selected = (array) $_POST['selected'];
 $rows = $db->get_results("SELECT kode_gejala, nama_gejala FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $selected) . "')");
 $gejala_pilih = json_encode($_POST['selected']);
+$time = $_POST['time'];
 ?>
+
+<sub>Tabel dapat digeser kiri-kanan <span class="glyphicon glyphicon-resize-horizontal"></span></sub>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Gejala Terpilih</h3>
@@ -26,8 +29,8 @@ $gejala_pilih = json_encode($_POST['selected']);
         <?php endforeach; ?>
     </table>
 </div>
-<?php
 
+<?php
 $rows = $db->get_results("SELECT * FROM tb_penyakit ORDER BY kode_penyakit");
 foreach ($rows as $row) {
     $penyakit[$row->kode_penyakit] = $row;
@@ -39,6 +42,7 @@ $b = new Bayes($selected, $penyakit, $data);
 ?>
 
 <!-- PERSENTASE -->
+<sub>Tabel dapat digeser kiri-kanan <span class="glyphicon glyphicon-resize-horizontal"></span></sub>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
@@ -72,24 +76,27 @@ $b = new Bayes($selected, $penyakit, $data);
             </tfoot>
         </table>
     </div>
-    <div class="panel-footer">
-        <p>
+    <div class="panel-footer text-justify">
+        <h3>Hasil</h3>
+        <p class="color-white">
             <?php
             arsort($b->persen);
             $kode_penyakit = key($b->persen);
-            $time = date('Y-m-d H:i:s');
             $total_bobot = round($b->persen[$kode_penyakit] * 100, 2);
             
             $db->query("INSERT INTO tb_diagnosa (kode_user, kode_penyakit, total_bobot, gejala_pilih, created_at) VALUES ('$_SESSION[login]', '$kode_penyakit', '$total_bobot', '$gejala_pilih', '$time')");
             ?>
-            Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <a href="?m=penyakit"><strong><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
-            dengan hasil <strong><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
+            Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <strong style="color: #00bc8c;"><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
+            dengan hasil <strong style="color: #00bc8c;"><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
         </p>
-        <h3>Solusi</h3>
-        <p><?= $penyakit[$kode_penyakit]->keterangan ?></p>
-        <p>
-            <a class="btn btn-primary" href="?m=konsultasi"><span class="glyphicon glyphicon-refresh"></span> Konsultasi Lagi</a>
-            <a class="btn btn-default" href="cetak.php?m=hasil&<?= http_build_query(array('selected' => $selected)) ?>" target="_blank"><span class="glyphicon glyphicon-print"></span> Cetak</a>
-        </p>
+        <h3>Keterangan</h3>
+        <p class="color-white"><?= $penyakit[$kode_penyakit]->keterangan ?></p>
+        <div>
+            <a class="btn btn-primary" href="https://forms.gle/a7izEmGV89uUsGJGA" target="_blank"> Survey </a>
+            <hr>
+            <a class="btn btn-secondary" href="?m=konsultasi"><span class="glyphicon glyphicon-refresh"></span> Konsultasi Lagi</a>
+            <a class="btn btn-default" href="cetak.php?m=hasil&<?= http_build_query(array('selected' => $selected, 'time' => $time)) ?>" target="_blank"><span class="glyphicon glyphicon-print"></span> Cetak</a>
+        </div>
     </div>
 </div>
+<a class="btn btn-danger" href="?"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a>

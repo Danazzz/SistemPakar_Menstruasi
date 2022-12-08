@@ -21,7 +21,14 @@
             </div>
             <div class="form-group">
                 <label>Nilai <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" name="nilai" />
+                <select name="nilai" class="form-control">
+                    <option selected disabled>-</option>
+                    <option value=0>Tidak ada</option>
+                    <option value=0.4>Mungkin</option>
+                    <option value=0.6>Kemungkinan Besar</option>
+                    <option value=0.8>Hampir Pasti</option>
+                    <option value=1>Pasti</option>
+                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Simpan</button>

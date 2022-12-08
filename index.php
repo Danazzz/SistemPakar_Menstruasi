@@ -38,13 +38,13 @@ include 'functions.php';
 							<li><a href="?m=penyakit"><span class="glyphicon glyphicon-pushpin"></span> Penyakit</a></li>
 							<li><a href="?m=gejala"><span class="glyphicon glyphicon-flash"></span> Gejala</a></li>
 							<li><a href="?m=aturan"><span class="glyphicon glyphicon-star"></span> Aturan</a></li>
-							<li><a href="?m=konsultasi"><span class="glyphicon glyphicon-stats"></span> Konsultasi</a></li>
+							<li><a href="?m=konsultasi"><span class="glyphicon glyphicon-check"></span> Konsultasi</a></li>
 							<li><a href="?m=history"><span class="glyphicon glyphicon-time"></span> History</a></li>
 							<li><a href="?m=password"><span class="glyphicon glyphicon-lock"></span> Password</a></li>
 							<li><a href="aksi.php?act=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					<?php 
 						} elseif ($_SESSION['akses'] == '1') { ?>
-						<li><a href="?m=konsultasi"><span class="glyphicon glyphicon-stats"></span> Konsultasi</a></li>
+						<li><a href="?m=konsultasi"><span class="glyphicon glyphicon-check"></span> Konsultasi</a></li>
 						<li><a href="?m=history"><span class="glyphicon glyphicon-time"></span> History</a></li>
 						<li><a href="?m=password"><span class="glyphicon glyphicon-lock"></span> Password</a></li>
 						<li><a href="aksi.php?act=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -79,6 +79,10 @@ include 'functions.php';
 	<script type="text/javascript">
 		$('.form-control').attr('autocomplete', 'off');
 	</script>
+	<script>
+	if ( window.history.replaceState ) {
+	window.history.replaceState( null, null, window.location.href );
+	}
+	</script>
 </body>
-
 </html>

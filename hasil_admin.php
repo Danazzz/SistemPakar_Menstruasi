@@ -2,6 +2,7 @@
 $selected = (array) $_POST['selected'];
 $rows = $db->get_results("SELECT kode_gejala, nama_gejala FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $selected) . "')");
 $gejala_pilih = json_encode($_POST['selected']);
+$time = $_POST['time'];
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -39,7 +40,7 @@ $b = new Bayes($selected, $penyakit, $data);
 ?>
 
 <!-- PROBABILITAS PENYAKIT GEJALA -->
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             <a href="#pro_penyakit_gejala" data-toggle="collapse">Probabilitas Penyakit Gejala</a>
@@ -68,7 +69,7 @@ $b = new Bayes($selected, $penyakit, $data);
 </div>
 
 <!-- PROBILITAS GEJALA -->
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             <a href="#pro_gejala" data-toggle="collapse">Probabilitas Gejala</a>
@@ -94,7 +95,7 @@ $b = new Bayes($selected, $penyakit, $data);
 
 <!-- PROBABILITAS TIAP PENYAKIT -->
 <?php foreach ($penyakit as $key_penyakit => $val_penyakit) : ?>
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a href="#pro_penyakit_<?= $key_penyakit ?>" data-toggle="collapse">Probabilitas Penyakit <?= $val_penyakit->nama_penyakit ?></a>
@@ -128,7 +129,7 @@ $b = new Bayes($selected, $penyakit, $data);
 <?php endforeach ?>
 
 <!-- PERSENTASE -->
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             <a href="#persentase" data-toggle="collapse">Persentase</a>
@@ -166,16 +167,15 @@ $b = new Bayes($selected, $penyakit, $data);
             <?php
             arsort($b->persen);
             $kode_penyakit = key($b->persen);
-            $time = date('Y-m-d H:i:s');
             $total_bobot = round($b->persen[$kode_penyakit] * 100, 2);
             
             $db->query("INSERT INTO tb_diagnosa (kode_user, kode_penyakit, total_bobot, gejala_pilih, created_at) VALUES ('$_SESSION[login]', '$kode_penyakit', '$total_bobot', '$gejala_pilih', '$time')");
             ?>
-            Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <a href="?m=penyakit"><strong><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
-            dengan hasil <strong><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
+            Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <strong style="color: #00bc8c;"><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
+            dengan hasil <strong style="color: #00bc8c;"><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
         </p>
-        <h3>Solusi</h3>
-        <p><?= $penyakit[$kode_penyakit]->keterangan ?></p>
+        <h3 class="color-white">Keterangan</h3>
+        <p class="color-white"><?= $penyakit[$kode_penyakit]->keterangan ?></p>
         <p>
             <a class="btn btn-primary" href="?m=konsultasi"><span class="glyphicon glyphicon-refresh"></span> Konsultasi Lagi</a>
             <a class="btn btn-default" href="cetak.php?m=hasil&<?= http_build_query(array('selected' => $selected)) ?>" target="_blank"><span class="glyphicon glyphicon-print"></span> Cetak</a>

@@ -16,7 +16,9 @@ if ($_POST) {
     }
 }
 if (!$success) : ?>
+    <sub>Tabel dapat digeser kiri-kanan <span class="glyphicon glyphicon-resize-horizontal"></span></sub>
     <form action="?m=konsultasi" method="post">
+        <input type="hidden" name="time" value="<?= date('Y-m-d H:i:s') ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Pilih Gejala</h3>
@@ -47,6 +49,7 @@ if (!$success) : ?>
             </div>
         </div>
     </form>
+    <a class="btn btn-danger" href="?"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a>
     <script>
         $(function() {
             $("#checkAll").click(function() {

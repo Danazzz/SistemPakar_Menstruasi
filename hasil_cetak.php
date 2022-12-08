@@ -3,7 +3,43 @@
 <?php
 $selected = (array) $_GET['selected'];
 $rows = $db->get_results("SELECT kode_gejala, nama_gejala FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $selected) . "')");
+$time = $_GET['time'];
+
+$users = $db->get_results("SELECT tb_user.kode_user, tb_user.user, tb_user.tgl_lahir, tb_user.kota_asal, tb_user.jenis_kelamin, tb_user.pekerjaan, tb_diagnosa.created_at FROM tb_user INNER JOIN tb_diagnosa ON tb_user.kode_user = tb_diagnosa.kode_user WHERE tb_diagnosa.created_at = '$time'");
 ?>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Profil</h3>
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ID Pengguna</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Asal</th>
+                <th>Jenis Kelamin</th>
+                <th>Pekerjaan</th>
+                <th>Tanggal Konsultasi</th>
+            </tr>
+        </thead>
+        <?php
+        foreach ($users as $user) :
+        ?>
+            <tr>
+                <td><?= $user->kode_user ?></td>
+                <td><?= $user->user ?></td>
+                <td><?= $user->tgl_lahir ?></td>
+                <td><?= $user->kota_asal ?></td>
+                <td><?= $user->jenis_kelamin ?></td>
+                <td><?= $user->pekerjaan ?></td>
+                <td><?= $user->created_at ?></td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Gejala Terpilih</h3>

@@ -24,7 +24,46 @@ $row = $db->get_row("SELECT * FROM tb_aturan WHERE ID='$_GET[ID]'");
             </div>
             <div class="form-group">
                 <label>Nilai <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" name="nilai" value="<?= $row->nilai ?>" />
+                <select name="nilai" class="form-control">
+                    <?php
+                    if($row->nilai == 0){ ?>
+                        <option value=0 selected>Tidak ada</option>
+                        <option value=0.4>Mungkin</option>
+                        <option value=0.6>Kemungkinan Besar</option>
+                        <option value=0.8>Hampir Pasti</option>
+                        <option value=1>Pasti</option>
+                    <?php
+                    } else if($row->nilai == 0.4){ ?>
+                        <option value=0.4 selected>Mungkin</option>
+                        <option value=0>Tidak ada</option>
+                        <option value=0.6>Kemungkinan Besar</option>
+                        <option value=0.8>Hampir Pasti</option>
+                        <option value=1>Pasti</option>
+                    <?php
+                    } else if($row->nilai == 0.6){ ?>
+                        <option value=0.6 selected>Kemungkinan Besar</option>
+                        <option value=0>Tidak ada</option>
+                        <option value=0.4>Mungkin</option>
+                        <option value=0.8>Hampir Pasti</option>
+                        <option value=1>Pasti</option>
+                    <?php	
+                    } else if($row->nilai == 0.8){ ?>
+                        <option value=0.8 selected>Hampir Pasti</option>
+                        <option value=0>Tidak ada</option>
+                        <option value=0.4>Mungkin</option>
+                        <option value=0.6>Kemungkinan Besar</option>
+                        <option value=1>Pasti</option>
+                    <?php
+                    } else if($row->nilai == 1){ ?>
+                        <option value=1 selected>Pasti</option>
+                        <option value=0>Tidak ada</option>
+                        <option value=0.4>Mungkin</option>
+                        <option value=0.6>Kemungkinan Besar</option>
+                        <option value=0.8>Hampir Pasti</option>
+                    <?php
+                    } 
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Simpan</button>

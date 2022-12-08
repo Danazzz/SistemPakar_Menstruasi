@@ -7,7 +7,7 @@
         <form class="form-signin" action="?m=login" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" class="form-control" name="email" autofocus />
+                <input type="email" class="form-control" name="email" autofocus />
             </div>
             <div class="form-group">
                 <label>Password</label>
