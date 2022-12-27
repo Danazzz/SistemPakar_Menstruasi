@@ -7,6 +7,7 @@ if ($_POST) {
     if (count((array)$_POST['selected']) > 0) {
         $success = true;
         if ($_SESSION['akses'] == '0') {
+            $start_time = microtime(true);
             include 'hasil_admin.php';
         } elseif ($_SESSION['akses'] == '1') {
             include 'hasil.php';
@@ -38,7 +39,7 @@ if (!$success) : ?>
                     foreach ($rows as $row) : ?>
                         <tr>
                             <td><input type="checkbox" name="selected[]" value="<?= $row->kode_gejala ?>" /></td>
-                            <td><?= ++$no ?></td>
+                            <td><?= $row->kode_gejala ?></td>
                             <td><?= $row->nama_gejala ?></td>
                         </tr>
                     <?php endforeach; ?>

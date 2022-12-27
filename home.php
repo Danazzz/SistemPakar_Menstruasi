@@ -19,6 +19,7 @@
                 <ol><strong>4.</strong> Klik tombol <strong>Survey</strong>, untuk melakukan survey</ol>
             </li></br>
                 <a class="btn btn-primary" href="?m=konsultasi"><span class="glyphicon glyphicon-check"></span> Konsultasi</a>
+        </br><sub><i><strong>Disclaimer</strong></i> : Hasil konsultasi dari sistem adalah berupa Diagnosa Awal. Untuk penanganan lebih lanjut silahkan datang ke dokter.</sub>
             </br></br>
             <li>
                 <ol>Anda dapat cek kembali hasil diagnosa pada menu <strong>"History"</strong> dengan cara menuju menu dropdown <span class="glyphicon glyphicon-menu-hamburger"></span> pada pojok kanan atas</ol>

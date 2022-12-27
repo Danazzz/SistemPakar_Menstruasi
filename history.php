@@ -23,7 +23,7 @@ if ($_SESSION['akses'] == '0') {
             <thead>
                 <tr>
                     <th style="width: 1%;">No</th>
-                    <th style="width: 12%">ID Pengguna</th>
+                    <th style="width: 12%">Nama</th>
                     <th style="width: 5%">Penyakit</th>
                     <th style="width: 5%"> Hasil Diagnosa</th>
                     <th style="width: 10%">Waktu</th>
@@ -36,7 +36,7 @@ if ($_SESSION['akses'] == '0') {
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row->kode_user ?></td>
+                    <td><?= $row->user ?></td>
                     <td><?= $row->nama_penyakit ?></td>
                     <td><?= $row->total_bobot ?></td>
                     <td><?= $row->created_at ?></td>

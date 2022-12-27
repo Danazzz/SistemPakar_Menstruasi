@@ -39,6 +39,11 @@ foreach ($rows as $row) {
 $data = get_data($selected);
 
 $b = new Bayes($selected, $penyakit, $data);
+
+$end_time = microtime(true);
+
+$execution_time = $end_time - $start_time;
+$exec = number_format($execution_time, 5);
 ?>
 
 <!-- PERSENTASE -->
@@ -59,7 +64,8 @@ $b = new Bayes($selected, $penyakit, $data);
                     <th>Persen</th>
                 </tr>
             </thead>
-            <?php foreach ($b->persen as $key => $val) : ?>
+            <?php foreach ($b->persen as $key => $val) : 
+                ?>
                 <tr>
                     <td><?= $key ?></td>
                     <td><?= $penyakit[$key]->nama_penyakit ?></td>
@@ -86,7 +92,7 @@ $b = new Bayes($selected, $penyakit, $data);
             
             $db->query("INSERT INTO tb_diagnosa (kode_user, kode_penyakit, total_bobot, gejala_pilih, created_at) VALUES ('$_SESSION[login]', '$kode_penyakit', '$total_bobot', '$gejala_pilih', '$time')");
             ?>
-            Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <strong style="color: #00bc8c;"><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
+            Berdasarkan perhitungan sistem, kemungkinan penyakit yang diderita adalah <strong style="color: #00bc8c;"><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
             dengan hasil <strong style="color: #00bc8c;"><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
         </p>
         <h3>Keterangan</h3>

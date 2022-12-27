@@ -37,6 +37,11 @@ foreach ($rows as $row) {
 $data = get_data($selected);
 
 $b = new Bayes($selected, $penyakit, $data);
+
+$end_time = microtime(true);
+
+$execution_time = $end_time - $start_time;
+$exec = number_format($execution_time, 5);
 ?>
 
 <!-- PROBABILITAS PENYAKIT GEJALA -->
@@ -173,6 +178,7 @@ $b = new Bayes($selected, $penyakit, $data);
             ?>
             Berdasarkan perhitungan sistem, diagnosa penyakit yang diderita adalah <strong style="color: #00bc8c;"><?= $penyakit[$kode_penyakit]->nama_penyakit ?></strong></a>
             dengan hasil <strong style="color: #00bc8c;"><?= round($b->persen[$kode_penyakit] * 100, 2) ?>%</strong>
+            dengan eksekusi waktu <strong style="color: #00bc8c;"><?= $exec ?></strong>
         </p>
         <h3 class="color-white">Keterangan</h3>
         <p class="color-white"><?= $penyakit[$kode_penyakit]->keterangan ?></p>

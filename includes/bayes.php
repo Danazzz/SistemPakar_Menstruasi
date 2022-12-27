@@ -33,7 +33,7 @@ class Bayes
             }
         }
 
-        /** probabilitas penyakit gejala */
+        /** probabilitas gejala */
         $this->pro_gejala = array();
         foreach ($this->pro_gejala_penyakit as $key => $val) {
             /** mentotalkan (sum) probabilitas gejala penyakit untuk masing-masing gejala */

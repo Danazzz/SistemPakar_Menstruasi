@@ -127,7 +127,7 @@ if ($mod == 'gejala_tambah') {
     header("location:index.php?m=gejala");
 }
 
-/** ATURAN TAMBAH */
+/** ATURAN */
 else if ($mod == 'aturan_tambah') {
     $kode_penyakit = $_POST['kode_penyakit'];
     $kode_gejala = $_POST['kode_gejala'];
